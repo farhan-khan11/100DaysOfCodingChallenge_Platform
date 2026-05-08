@@ -52,6 +52,7 @@
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DataContext } from '../Context/AuthContext';
+import BASE_URL from '../config';
 
 const Landing = () => {
 
@@ -65,8 +66,12 @@ const Landing = () => {
         }
     }, [user, loading]);
 
+    // const handleLogin = () => {
+    //     window.location.href = 'http://localhost:4060/auth/github';
+    // }
+
     const handleLogin = () => {
-        window.location.href = 'http://localhost:4060/auth/github';
+        window.location.href = `${BASE_URL}/auth/github`;
     }
 
     if (loading) return (

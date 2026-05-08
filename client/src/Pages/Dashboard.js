@@ -112,6 +112,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { DataContext } from '../Context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import BASE_URL from '../config'
 
 const Dashboard = () => {
     const { user, setUser, problems, creatingRepo, setCreatingRepo } = useContext(DataContext)
@@ -119,7 +120,9 @@ const Dashboard = () => {
 
     const handleLogout = () => {
         try {
-            axios.get('http://localhost:4060/auth/logout', {
+            // axios.get(`http://localhost:4060/auth/logout`, {
+            axios.get(`http://${BASE_URL}/auth/logout`, {
+
                 withCredentials: true
             })
             setUser(null)
@@ -132,7 +135,8 @@ const Dashboard = () => {
     const handleCreateRepo = () => {
         setCreatingRepo(true)
 
-        axios.post('http://localhost:4060/github/create-repo', {}, {
+        // axios.post('http://localhost:4060/github/create-repo', {}, {
+        axios.post(`http://${BASE_URL}/github/create-repo`, {}, {
             withCredentials: true
         })
             .then(res => alert(res.data.message))
@@ -246,7 +250,7 @@ const Dashboard = () => {
                     >
                         {/* Repo icon */}
                         <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-                            <path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 010-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z" fill="currentColor"/>
+                            <path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 010-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z" fill="currentColor" />
                         </svg>
                         {creatingRepo ? 'Creating...' : 'Create Repo'}
                     </button>

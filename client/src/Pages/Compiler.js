@@ -130,6 +130,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 // import '../App.css'
 import axios from 'axios'
+import BASE_URL from '../config'
 
 const Compiler = () => {
 
@@ -141,7 +142,8 @@ const Compiler = () => {
     const [output, setOutput] = useState("")
 
     useEffect(() => {
-        axios.get(`http://localhost:4060/problems/${id}`)
+        // axios.get(`http://localhost:4060/problems/${id}`)
+        axios.get(`http://${BASE_URL}/problems/${id}`)
             .then(res => setProblem(res.data))
             .catch(error => console.log(error))
     }, [id])
@@ -154,7 +156,8 @@ const Compiler = () => {
         const payload = { language, code }
         console.log(payload)
         try {
-            const { data } = await axios.post("http://localhost:4060/run", payload)
+            // const { data } = await axios.post("http://localhost:4060/run", payload)
+            const { data } = await axios.post(`http://${BASE_URL}/run`, payload)
             console.log("data", data)
             setOutput(data.output);
             console.log(data.output)
@@ -178,7 +181,7 @@ const Compiler = () => {
             return;
         }
         try {
-            const { data } = await axios.post("http://localhost:4060/github/commit",
+            const { data } = await axios.post(`http://${BASE_URL}/github/commit`,
                 { code, language, problemId: id },
                 { withCredentials: true }
             )
