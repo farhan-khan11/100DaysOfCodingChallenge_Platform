@@ -143,7 +143,7 @@ const Compiler = () => {
 
     useEffect(() => {
         // axios.get(`http://localhost:4060/problems/${id}`)
-        axios.get(`http://${BASE_URL}/problems/${id}`)
+        axios.get(`${BASE_URL}/problems/${id}`)
             .then(res => setProblem(res.data))
             .catch(error => console.log(error))
     }, [id])
@@ -157,7 +157,7 @@ const Compiler = () => {
         console.log(payload)
         try {
             // const { data } = await axios.post("http://localhost:4060/run", payload)
-            const { data } = await axios.post(`http://${BASE_URL}/run`, payload)
+            const { data } = await axios.post(`${BASE_URL}/run`, payload)
             console.log("data", data)
             setOutput(data.output);
             console.log(data.output)
@@ -181,7 +181,7 @@ const Compiler = () => {
             return;
         }
         try {
-            const { data } = await axios.post(`http://${BASE_URL}/github/commit`,
+            const { data } = await axios.post(`${BASE_URL}/github/commit`,
                 { code, language, problemId: id },
                 { withCredentials: true }
             )

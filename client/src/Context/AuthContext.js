@@ -14,7 +14,7 @@ const AuthContext = (props) => {
 
     useEffect(() => {
         // axios.get('http://localhost:4060/auth/me', {
-        axios.get(`http://${BASE_URL}/auth/me`, {
+        axios.get(`${BASE_URL}/auth/me`, {
             withCredentials: true // this sends session cookie automaticallly
         })
             .then(res => {
@@ -29,7 +29,7 @@ const AuthContext = (props) => {
 
     useEffect(() => {
         // axios.get('http://localhost:4060/problems')
-        axios.get(`http://${BASE_URL}:4060/problems`)
+        axios.get(`${BASE_URL}/problems`)
             .then(res => setProblems(res.data))
             .catch(error => console.log(error))
     }, [])

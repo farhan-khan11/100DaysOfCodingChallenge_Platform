@@ -121,7 +121,7 @@ const Dashboard = () => {
     const handleLogout = () => {
         try {
             // axios.get(`http://localhost:4060/auth/logout`, {
-            axios.get(`http://${BASE_URL}/auth/logout`, {
+            axios.get(`${BASE_URL}/auth/logout`, {
 
                 withCredentials: true
             })
@@ -136,7 +136,7 @@ const Dashboard = () => {
         setCreatingRepo(true)
 
         // axios.post('http://localhost:4060/github/create-repo', {}, {
-        axios.post(`http://${BASE_URL}/github/create-repo`, {}, {
+        axios.post(`${BASE_URL}/github/create-repo`, {}, {
             withCredentials: true
         })
             .then(res => alert(res.data.message))
